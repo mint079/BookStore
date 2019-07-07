@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+
+<HTML xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<HEAD>
+		<title>BookStore: addBook</title>
+	</HEAD>
+	
+	<BODY>
+		<h1>Add book</h1>
+
+	<div>
+		<form th:object="${Book}" th:action="@{addBook}" action="#" method="POST">
+			<label for="title">Title</label>
+			<input type="text" id="title" th:field="*{title}" />
+			<label for="author">Author</label>
+			<input type="text" id="author" th:field="*{author}" />
+			<label for="isbn">ISBN</label>
+			<input type="text" id="isbn" th:field="*{isbn}" />
+			<label for="year">Year</label>
+			<input type="number" min="0" id="year" th:field="*{year}" />
+			<label for="price">Price</label>
+			<!-- 	step="0.01" allows two decimal points, min="0" allows only positive values -->
+			<input type="number" step="0.01" min="0" id="price" th:field="*{price}" />
+			
+			<label for="catelist">Category</label>
+			<select id="catelist" th:field="*{category}">
+				<option th:each="category: ${Categories}" th:value="${category.categoryId}" th:text="${category.name}"></option>
+			</select>
+			
+			<input type="submit" value="Add" />
+		</form>
+	</div>
+				
+	</BODY>
+</HTML>
